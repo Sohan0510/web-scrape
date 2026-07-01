@@ -71,11 +71,32 @@ That's it. No need to install Python, Node.js, MongoDB, or Tesseract manually.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/vtu-project.git
+git clone <your-repo-url>
 cd vtu-project
 ```
 
-### 2. Start the application
+### 2. Configure MongoDB
+
+Copy `.env.example` to `.env` and choose your MongoDB connection:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and uncomment **one** of these options:
+
+```env
+# OPTION 1: MongoDB Atlas (cloud)
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/?appName=<AppName>
+
+# OPTION 2: Local MongoDB via Docker Compose
+MONGO_URI=mongodb://mongodb:27017/
+
+# OPTION 3: Local MongoDB Compass / standalone install
+MONGO_URI=mongodb://localhost:27017/
+```
+
+### 3. Start the application
 
 ```bash
 docker-compose up -d --build
@@ -83,14 +104,14 @@ docker-compose up -d --build
 
 > The first run will take a few minutes to download images and build containers. Subsequent starts are fast.
 
-### 3. Open in your browser
+### 4. Open in your browser
 
-| Service                   | URL                                                      |
-| ------------------------- | -------------------------------------------------------- |
-| **Student Portal**        | [http://localhost](http://localhost)                     |
-| **Admin Dashboard**       | [http://localhost/urmom](http://localhost/urmom)         |
-| **API Docs (Swagger)**    | [http://localhost:8000/docs](http://localhost:8000/docs) |
-| **MongoDB** (for Compass) | `mongodb://localhost:27017/`                             |
+| Service                   | URL                              |
+| ------------------------- | -------------------------------- |
+| **Student Portal**        | http://localhost                  |
+| **Admin Dashboard**       | http://localhost/urmom            |
+| **API Docs (Swagger)**    | http://localhost:8000/docs        |
+| **MongoDB** (for Compass) | `mongodb://localhost:27017/`      |
 
 ---
 
@@ -113,25 +134,21 @@ docker-compose up -d --build
 
 ### Student Result Lookup
 
-1. Open [http://localhost](http://localhost)
+1. Open http://localhost
 2. Enter a USN (e.g., `1RF22CS024`)
 3. View marks with SGPA and CGPA, filterable by semester
 
 ---
 
----
-
 ## ⚙️ Environment Variables
 
-Out of the box, the Dockerized setup requires **zero configuration**. The `docker-compose.yml` comes pre-configured with sensible defaults.
+The `.env` file supports these variables:
 
-If you want to connect to an **external MongoDB instance** (e.g., MongoDB Atlas) instead of the built-in Docker container:
-
-1. Copy `.env.example` to `.env`
-2. Set your connection string:
-   ```env
-   MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/?appName=<AppName>
-   ```
+| Variable          | Description                                      | Default                          |
+| ----------------- | ------------------------------------------------ | -------------------------------- |
+| `MONGO_URI`       | MongoDB connection string (Atlas, Docker, local)  | `mongodb://mongodb:27017/`       |
+| `VTU_RESULT_URL`  | VTU result page URL (optional, set in the UI)    | _(empty)_                        |
+| `TESSERACT_PATH`  | Path to Tesseract binary (Docker sets this auto)  | `/usr/bin/tesseract`             |
 
 ---
 
