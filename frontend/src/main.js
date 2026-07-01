@@ -1,6 +1,6 @@
 import './style.css';
 
-const API = 'https://vtu-project.onrender.com';  // Vite proxy handles /api -> localhost:8000
+const API = '';  // Empty = relative URL. Nginx proxies /api/ → backend:8000
 
 // ── State ──
 let currentJobId = null;

@@ -1,6 +1,6 @@
 import './student.css';
 
-const API = 'https://vtu-project.onrender.com'; // Adjust for your deployment
+const API = '';  // Empty = relative URL. Nginx proxies /api/ → backend:8000
 
 // ── App Shell ──
 document.querySelector('#student-app').innerHTML = `
