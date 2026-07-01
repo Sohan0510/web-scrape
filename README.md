@@ -4,7 +4,7 @@ A full-stack tool to **automatically scrape, store, and export** student exam re
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature                      | Description                                                                                                                                           |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -19,7 +19,7 @@ A full-stack tool to **automatically scrape, store, and export** student exam re
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌──────────────────┐       ┌──────────────────────┐       ┌──────────────┐
@@ -55,7 +55,7 @@ A full-stack tool to **automatically scrape, store, and export** student exam re
 
 ---
 
-## 🛠️ Prerequisites
+## Prerequisites
 
 You only need **Docker** installed:
 
@@ -106,16 +106,16 @@ docker-compose up -d --build
 
 ### 4. Open in your browser
 
-| Service                   | URL                              |
-| ------------------------- | -------------------------------- |
-| **Student Portal**        | http://localhost                  |
-| **Admin Dashboard**       | http://localhost/urmom            |
-| **API Docs (Swagger)**    | http://localhost:8000/docs        |
-| **MongoDB** (for Compass) | `mongodb://localhost:27017/`      |
+| Service                   | URL                          |
+| ------------------------- | ---------------------------- |
+| **Student Portal**        | http://localhost             |
+| **Admin Dashboard**       | http://localhost/urmom       |
+| **API Docs (Swagger)**    | http://localhost:8000/docs   |
+| **MongoDB** (for Compass) | `mongodb://localhost:27017/` |
 
 ---
 
-## 📖 Usage Guide
+## Usage Guide
 
 ### Scraping Results (Admin Dashboard)
 
@@ -140,19 +140,7 @@ docker-compose up -d --build
 
 ---
 
-## ⚙️ Environment Variables
-
-The `.env` file supports these variables:
-
-| Variable          | Description                                      | Default                          |
-| ----------------- | ------------------------------------------------ | -------------------------------- |
-| `MONGO_URI`       | MongoDB connection string (Atlas, Docker, local)  | `mongodb://mongodb:27017/`       |
-| `VTU_RESULT_URL`  | VTU result page URL (optional, set in the UI)    | _(empty)_                        |
-| `TESSERACT_PATH`  | Path to Tesseract binary (Docker sets this auto)  | `/usr/bin/tesseract`             |
-
----
-
-## 🛑 Stopping the Application
+## Stopping the Application
 
 ```bash
 # Stop all containers (data is preserved)
@@ -164,7 +152,7 @@ docker-compose down -v
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 vtu-project/
@@ -197,7 +185,7 @@ vtu-project/
 
 ---
 
-## 📊 Excel Report Sheets
+## Excel Report Sheets
 
 Each exported Excel file contains the following sheets:
 
@@ -207,16 +195,6 @@ Each exported Excel file contains the following sheets:
 | **Detailed Marks**       | One row per subject per student, grouped by semester. Includes old/new marks for revaluation comparisons.                                                 |
 | **Sem N** (per semester) | Filtered view of a single semester with per-semester pass rate statistics.                                                                                |
 | **Analytics**            | Subject-wise analysis — pass percentage, average marks, highest/lowest scores per subject.                                                                |
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ---
 
