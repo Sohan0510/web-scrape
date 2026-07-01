@@ -1,0 +1,39 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: vtu_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vtu_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./exports:/app/exports
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - TESSERACT_PATH=/usr/bin/tesseract
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: vtu_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
